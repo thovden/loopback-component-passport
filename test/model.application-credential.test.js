@@ -1,3 +1,9 @@
+// Copyright IBM Corp. 2014,2016. All Rights Reserved.
+// Node module: loopback-component-passport
+// This file is licensed under the Artistic License 2.0.
+// License text available at https://opensource.org/licenses/Artistic-2.0
+
+'use strict';
 var m = require('./init');
 var loopback = require('loopback');
 var assert = require('assert');
@@ -5,15 +11,15 @@ var ApplicationCredential = m.ApplicationCredential;
 
 var Application = loopback.Application;
 
-before(function (done) {
+before(function(done) {
   Application.destroyAll(done);
 });
 
-describe('ApplicationCredential', function () {
+describe('ApplicationCredential', function() {
   var appId = null;
-  before(function (done) {
+  before(function(done) {
     var ds = loopback.createDataSource({
-      connector: 'memory'
+      connector: 'memory',
     });
 
     ApplicationCredential.attachTo(ds);
@@ -21,19 +27,19 @@ describe('ApplicationCredential', function () {
     ApplicationCredential.belongsTo(Application, {foreignKey: 'appId'});
 
     Application.create({
-      name: 'MyApp'
-    }, function (err, app) {
+      name: 'MyApp',
+    }, function(err, app) {
       appId = app.id;
       done(err);
     });
   });
 
-  it('supports linked 3rd party accounts', function (done) {
+  it('supports linked 3rd party accounts', function(done) {
     ApplicationCredential.link(appId, 'facebook', 'oAuth 2.0', {
-        clientID: 'facebook-client-id-1',
-        clientSecret: 'facebook-client-secret-1',
-        callbackURL: 'http://localhost:3000/auth/facebook/callback'},
-      function (err, cred) {
+      clientID: 'facebook-client-id-1',
+      clientSecret: 'facebook-client-secret-1',
+      callbackURL: 'http://localhost:3000/auth/facebook/callback'},
+      function(err, cred) {
         assert(!err, 'No error should be reported');
 
         assert.equal(cred.provider, 'facebook');
@@ -46,7 +52,7 @@ describe('ApplicationCredential', function () {
         assert.equal(appId, cred.appId);
 
         // Follow the belongsTo relation
-        cred.application(function (err, app) {
+        cred.application(function(err, app) {
           assert(!err, 'No error should be reported');
           assert.equal(app.name, 'MyApp');
           done();
@@ -54,7 +60,7 @@ describe('ApplicationCredential', function () {
       });
   });
 
-  it('supports linked 3rd party accounts if exists', function (done) {
+  it('supports linked 3rd party accounts if exists', function(done) {
     ApplicationCredential.create({
       provider: 'facebook',
       authScheme: 'oAuth 2.0',
@@ -62,32 +68,30 @@ describe('ApplicationCredential', function () {
       credentials: {
         clientID: 'facebook-client-id-1',
         clientSecret: 'facebook-client-secret-1',
-        callbackURL: 'http://localhost:3000/auth/facebook/callback'}
-    }, function (err, cred) {
+        callbackURL: 'http://localhost:3000/auth/facebook/callback'},
+    }, function(err, cred) {
       ApplicationCredential.link(appId, 'facebook', 'oAuth 2.0', {
         clientID: 'facebook-client-id-1',
         clientSecret: 'facebook-client-secret-2',
-        callbackURL: 'http://localhost:3000/auth/facebook/callback'}, function (err, cred) {
-        assert(!err, 'No error should be reported');
-
-        assert.equal(cred.provider, 'facebook');
-        assert.equal(cred.authScheme, 'oAuth 2.0');
-        assert.deepEqual(cred.credentials, {
-          clientID: 'facebook-client-id-1',
-          clientSecret: 'facebook-client-secret-2',
-          callbackURL: 'http://localhost:3000/auth/facebook/callback'});
-
-        assert.equal(appId, cred.appId);
-        // Follow the belongsTo relation
-        cred.application(function (err, app) {
+        callbackURL: 'http://localhost:3000/auth/facebook/callback'}, function(err, cred) {
           assert(!err, 'No error should be reported');
-          assert.equal(app.name, 'MyApp');
-          assert.equal(app.id, appId);
-          done();
+
+          assert.equal(cred.provider, 'facebook');
+          assert.equal(cred.authScheme, 'oAuth 2.0');
+          assert.deepEqual(cred.credentials, {
+            clientID: 'facebook-client-id-1',
+            clientSecret: 'facebook-client-secret-2',
+            callbackURL: 'http://localhost:3000/auth/facebook/callback'});
+
+          assert.equal(appId, cred.appId);
+        // Follow the belongsTo relation
+          cred.application(function(err, app) {
+            assert(!err, 'No error should be reported');
+            assert.equal(app.name, 'MyApp');
+            assert.equal(app.id, appId);
+            done();
+          });
         });
-      });
     });
   });
-
 });
-

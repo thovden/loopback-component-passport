@@ -1,4 +1,134 @@
-2015-03-09, Version 1.2.0
+2016-10-14, Version 2.3.0
+=========================
+
+ * Update fb profile fields (Loay)
+
+ * Fix login function (Loay)
+
+ * Update translation files - round#2 (Candy)
+
+ * Fixes issue #149 (Alex Plescan)
+
+ * Add translated files (gunjpan)
+
+ * Update deps to loopback 3.0.0 RC (Miroslav Bajtoš)
+
+ * Upgrade to loopback@3.0.0-alpha (Miroslav Bajtoš)
+
+
+2016-09-09, Version 2.2.0
+=========================
+
+ * Update eslint/dependencies (Loay)
+
+ * Add globalization (Candy)
+
+ * Fix linting errors (Loay)
+
+ * Update URLs in CONTRIBUTING.md (#163) (Ryan Graham)
+
+ * update copyright notices and license (Ryan Graham)
+
+ * Return the configured strategy (Bert Casier)
+
+ * update after code review (Bert Casier)
+
+ * refactor tests (Bert Casier)
+
+ * adds error to redirect URL (Bert Casier)
+
+ * Fix bug of headers error and add eslint fix Adding code to fix bug related to headers error sent twice (Loay Gewily)
+
+
+2016-03-18, Version 2.1.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * Fix email validation for LDAP issue 1963 (Loay Gewily)
+
+ * Fix getting AuthStrategy directly from package when Strategy key is not here (Steve Grosbois)
+
+ * Make `username` field optional in UserIdentity.login method (Vladimir Shushkov)
+
+ * Throw softer error in `local` stragegy when trying to create `accessToken` with `"setAccessToken": true` option. In case when reason is wrong user password. (Vladimir Shushkov)
+
+ * The name of provider can be configured in options. (Clark Wang)
+
+ * Avoid duplicate user identities (Clark Wang)
+
+
+2016-01-11, Version 2.0.0
+=========================
+
+ * Fix version Number Revert to proper version number (Loay Gewily)
+
+ * Use Auto-generated email Using auto-generated email for 3rd party accounts & update version# (Loay Gewily)
+
+ * Enforce email verification for local accounts (Loay Gewily)
+
+
+2015-11-04, Version 1.6.0
+=========================
+
+ * Refer to licenses with a link (Sam Roberts)
+
+ * Use strongloop conventions for licensing (Sam Roberts)
+
+ * feature add failureFlash on link errors (Berkeley Martinez)
+
+ * limit options to post and get and default to get (Jose Garcia)
+
+ * customize callback HTTP method (Jose Garcia)
+
+ * session.redirectTo erase after successful redirect (liba)
+
+ * adding dynamic redirect after successful login (liba)
+
+ * Fixed suspected typo in passport-configurator (Samuel Gaus)
+
+ * Customize cookie for use with subdomain (Pongstr)
+
+ * compatible with wechat's openid (Yorkie Liu)
+
+
+2015-06-24, Version 1.5.0
+=========================
+
+ * Register passport with session:after phase (Raymond Feng)
+
+ * Make sure passport is registered with session phase (Raymond Feng)
+
+ * Error condition would yield multiple callbacks (Jonathan Sheely)
+
+
+2015-06-17, Version 1.4.0
+=========================
+
+ * Make email optional (Berkeley Martinez)
+
+
+2015-06-02, Version 1.3.1
+=========================
+
+ * Fix the maxAge for cookies (Raymond Feng)
+
+ * Reformat code (Raymond Feng)
+
+
+2015-04-22, Version 1.3.0
+=========================
+
+ * Update README.md (Rand McKinney)
+
+ * 401 instead of redirect to failure (Pierre Gambarotto)
+
+ * rename variables to camlCase form (Pierre Gambarotto)
+
+ * ldap authentication (Pierre Gambarotto)
+
+
+2015-03-08, Version 1.2.0
 =========================
 
  * Update deps (Raymond Feng)
